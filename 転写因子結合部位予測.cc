@@ -169,6 +169,7 @@ vector<vector<double>> HIT_random(vector<vector<double>> ozz){
 
 int main(void){
 
+
     vector<vector<double>>ozz_MATa1=PFM(file_name[0]);
     vector<vector<double>>ozz_MATalpha2=PFM(file_name[1]);
     vector<vector<double>>ozz_MCM1=PFM(file_name[2]);
@@ -177,6 +178,8 @@ int main(void){
     vector<vector<double>>ozz_RCS1=PFM(file_name[5]);
     vector<vector<double>>ozz_ROX1=PFM(file_name[6]);
     vector<vector<double>>ozz_TAF=PFM(file_name[7]);
+
+    cout<<"MATa1の対数オッズスコア行列"<<endl;
 
     for(int i=0;i<4;i++){                        //ozz_MATa1の内容を出力してみる
 
@@ -352,8 +355,8 @@ int main(void){
     cout<<"転写因子MATa1のランダム配列のhit数の最大値:"<<hit_random_1dim_MATa1[0]<<endl;   //ランダム配列のhit数の最大値を出力 
     cout<<"ランダム配列の要素数:"<<hit_random_1dim_MATa1.size()<<endl;   //ランダム配列のhit数の要素数を出力
     
-    //ｐ値を上位0.1パーとすると、上位４９個
-    double p_value=0.00035;   //p値を0.2パーとする
+    //
+    double p_value=0.0001;   //p値
     int index_MATa1=static_cast<int>(hit_random_1dim_MATa1.size()*p_value);   //p値に対応するインデックスを計算
     int index_MATalpha2=static_cast<int>(hit_random_1dim_MATalpha2.size()*p_value);
     int index_MCM1=static_cast<int>(hit_random_1dim_MCM1.size()*p_value);
@@ -363,14 +366,14 @@ int main(void){
     int index_ROX1=static_cast<int>(hit_random_1dim_ROX1.size()*p_value);
     int index_TAF=static_cast<int>(hit_random_1dim_TAF.size()*p_value);     
 
-    cout<<"転写因子MATa1のランダム配列のhit数の上位"<<p_value*100<<"パーの値:"<<hit_random_1dim_MATa1[index_MATa1]<<endl; 
-    cout<<"転写因子MATalpha2のランダム配列のhit数の上位"<<p_value*100<<"パーの値:"<<hit_random_1dim_MATalpha2[index_MATalpha2]<<endl;
-    cout<<"転写因子MCM1のランダム配列のhit数の上位"<<p_value*100<<"パーの値:"<<hit_random_1dim_MCM1[index_MCM1]<<endl;
-    cout<<"転写因子MIG1のランダム配列のhit数の上位"<<p_value*100<<"パーの値:"<<hit_random_1dim_MIG1[index_MIG1]<<endl;
-    cout<<"転写因子PHO4のランダム配列のhit数の上位"<<p_value*100<<"パーの値:"<<hit_random_1dim_PHO4[index_PHO4]<<endl;
-    cout<<"転写因子RCS1のランダム配列のhit数の上位"<<p_value*100<<"パーの値:"<<hit_random_1dim_RCS1[index_RCS1]<<endl;
-    cout<<"転写因子ROX1のランダム配列のhit数の上位"<<p_value*100<<"パーの   値:"<<hit_random_1dim_ROX1[index_ROX1]<<endl;
-    cout<<"転写因子TAFのランダム配列のhit数の上位"<<p_value*100<<"パーの値:"<<hit_random_1dim_TAF[index_TAF]<<endl;     
+    cout<<"転写因子MATa1のランダム配列のhit数の上位"<<p_value*100<<"パーの値（閾値）:"<<hit_random_1dim_MATa1[index_MATa1]<<endl; 
+    cout<<"転写因子MATalpha2のランダム配列のhit数の上位"<<p_value*100<<"パーの値（閾値）:"<<hit_random_1dim_MATalpha2[index_MATalpha2]<<endl;
+    cout<<"転写因子MCM1のランダム配列のhit数の上位"<<p_value*100<<"パーの値（閾値）:"<<hit_random_1dim_MCM1[index_MCM1]<<endl;
+    cout<<"転写因子MIG1のランダム配列のhit数の上位"<<p_value*100<<"パーの値（閾値）:"<<hit_random_1dim_MIG1[index_MIG1]<<endl;
+    cout<<"転写因子PHO4のランダム配列のhit数の上位"<<p_value*100<<"パーの値（閾値）:"<<hit_random_1dim_PHO4[index_PHO4]<<endl;
+    cout<<"転写因子RCS1のランダム配列のhit数の上位"<<p_value*100<<"パーの値（閾値）:"<<hit_random_1dim_RCS1[index_RCS1]<<endl;
+    cout<<"転写因子ROX1のランダム配列のhit数の上位"<<p_value*100<<"パーの値（閾値）:"<<hit_random_1dim_ROX1[index_ROX1]<<endl;
+    cout<<"転写因子TAFのランダム配列のhit数の上位"<<p_value*100<<"パーの値（閾値）:"<<hit_random_1dim_TAF[index_TAF]<<endl;     
 
     
     vector<string> promoter={"YDR270W","YJR048W","YDL227C","YBR093C","YPR065W","YFL026W","YKL209C","YLR377C"};   //プロモーター名を格納する配列
