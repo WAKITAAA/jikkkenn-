@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+#include<fstream>
+#include<sstream>
+using namespace std;
+
+const int NUM_FEATURES = 53;
+const int NUM_SEQS = 10000;
+
+void LoadSolubilityFile(string file_name,vector<string>& feature_name,vector<vector<double>>& dataset,vector<int>& labels){
+    ifstream ifs(file_name);
+    if(!ifs){
+        cout<<"cannnot open file"<<endl;
+    }
+    string dummy;
+    ifs>>dummy;    //最初のidの読み飛ばし
+
+    for(int i=0;i<NUM_FEATURES;i++){
+        ifs>>feature_name[i];
+    }
+    ifs>>dummy;   //最後のlabelの読み飛ばし
+
+    for(int j=0;j<NUM_SEQS;j++){
+        ifs>>dummy;                 //protein名の読み飛ばし
+        for(int i=0;i<NUM_FEATURES;i++){
+            ifs>>dataset[j][i];
+        }
+        ifs>>labels[j];
+    }
+    cout<<"データの読み込みが完成しました"<<endl;
+
+}
+
+int main(void){
+    vector<string> feature_name(NUM_FEATURES,"");
+    vector<vector<double>> dataset(NUM_SEQS,vector<double>(NUM_FEATURES,0.0));
+    vector<int> labels(NUM_SEQS);
+
+    LoadSolubilityFile("protein_solubility_dataset.txt",feature_name,dataset,labels);
+    for(int i=0;i<NUM_FEATURES;i++){
+        cout<<feature_name[i]<<"";
+    }
+    for(int i=0;i<NUM_SEQS;i++){
+        cout<<labels[i]<<"";
+    }
+     for(int j=0;j<NUM_SEQS;j++){
+        for(int i=0;i<NUM_FEATURES;i++){
+            cout<<dataset[j][i]<<"";
+        }
+        cout<<endl;
+    }
+
+
+}
